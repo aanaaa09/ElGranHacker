@@ -1,6 +1,6 @@
 package com.ldm.elGranHacker.juego;
 
-public class Ingredientes {
+public class Elementos {
     public static final int TIPO_1 = 0;
     public static final int TIPO_2 = 1;
     public static final int TIPO_3 = 2;
@@ -10,7 +10,7 @@ public class Ingredientes {
     public int tipo;
     public float tiempoVida = 0;
 
-    public Ingredientes(int x, int y, int tipo) {
+    public Elementos(int x, int y, int tipo) {
         this.x = x;
         this.y = y;
         this.tipo = tipo;

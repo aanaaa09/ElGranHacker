@@ -15,13 +15,13 @@ public class Mundo {
     private static final float DURACION_OBJETO = 10.0f;
 
     public JollyRoger jollyroger;
-    public Ingredientes ingredientes;
+    public Elementos ingredientes;
     public boolean finalJuego = false;
     public int puntuacion = 0;
     private boolean gusanoComido = false;
 
     private List<Obstaculo> obstaculos = new ArrayList<>();
-    private List<Ingredientes> gusanos = new ArrayList<>(); // Lista para múltiples gusanos
+    private List<Elementos> gusanos = new ArrayList<>(); // Lista para múltiples gusanos
     private boolean modoExtremo; // Bandera para distinguir entre modos
     private Random random = new Random();
 
@@ -37,7 +37,7 @@ public class Mundo {
         } while (ingredientes.x == jollyroger.partes.get(0).x && ingredientes.y == jollyroger.partes.get(0).y);
     }
 
-    public List<Ingredientes> getGusanos() {
+    public List<Elementos> getGusanos() {
         return gusanos;
     }
 
@@ -56,7 +56,7 @@ public class Mundo {
                 return;
             }
 
-            Campanas head = jollyroger.partes.get(0);
+            Escudos head = jollyroger.partes.get(0);
 
             if (head.x == ingredientes.x && head.y == ingredientes.y) {
                 manejarIngredientes();
@@ -64,7 +64,7 @@ public class Mundo {
 
             // Manejar gusanos
             for (int i = gusanos.size() - 1; i >= 0; i--) {
-                Ingredientes gusano = gusanos.get(i);
+                Elementos gusano = gusanos.get(i);
                 if (head.x == gusano.x && head.y == gusano.y) {
                     manejarGusano(i);
                 }
@@ -110,7 +110,7 @@ public class Mundo {
 
         // Controlar tiempo de vida de los gusanos
         for (int i = gusanos.size() - 1; i >= 0; i--) {
-            Ingredientes gusano = gusanos.get(i);
+            Elementos gusano = gusanos.get(i);
             gusano.tiempoVida += deltaTime;
             if (gusano.tiempoVida > DURACION_GUSANO) {
                 gusanos.remove(i); // Eliminar gusano si se acaba el tiempo
@@ -127,20 +127,20 @@ public class Mundo {
 
     private void manejarIngredientes() {
         switch (ingredientes.tipo) {
-            case Ingredientes.TIPO_1: // Tomate
+            case Elementos.TIPO_1: // Tomate
                 puntuacion += 5;
                 break;
-            case Ingredientes.TIPO_2: // Lechuga
+            case Elementos.TIPO_2: // Lechuga
                 puntuacion += 7;
                 break;
-            case Ingredientes.TIPO_3: // Queso
+            case Elementos.TIPO_3: // Queso
                 puntuacion += 10;
                 // Aumentar la velocidad del juego al tocar el queso
                 if (tick > 0.1f) {
                     tick -= 0.05f;
                     break;
                 }
-            case Ingredientes.TIPO_4: // Campana dorada
+            case Elementos.TIPO_4: // Campana dorada
                 puntuacion += 20;
                 jollyroger.anadirCampana();
                 break;
@@ -185,7 +185,7 @@ public class Mundo {
             gusanoY = random.nextInt(MUNDO_ALTO);
         } while (camposOcupados(gusanoX, gusanoY)); // Evita colocar sobre otros objetos
 
-        Ingredientes nuevoGusano = new Ingredientes(gusanoX, gusanoY, Ingredientes.TIPO_GUSANO);
+        Elementos nuevoGusano = new Elementos(gusanoX, gusanoY, Elementos.TIPO_GUSANO);
         gusanos.add(nuevoGusano);
     }
 
@@ -231,13 +231,13 @@ public class Mundo {
             return true;
         }
 
-        for (Campanas parte : jollyroger.partes) {
+        for (Escudos parte : jollyroger.partes) {
             if (parte.x == x && parte.y == y) {
                 return true;
             }
         }
 
-        for (Ingredientes gusano : gusanos) {
+        for (Elementos gusano : gusanos) {
             if (gusano.x == x && gusano.y == y) {
                 return true;
             }
@@ -263,16 +263,16 @@ public class Mundo {
         int tipoIngrediente;
 
         if (probabilidad < 40) {
-            tipoIngrediente = Ingredientes.TIPO_1; // Tomate (40%)
+            tipoIngrediente = Elementos.TIPO_1; // Tomate (40%)
         } else if (probabilidad < 70) {
-            tipoIngrediente = Ingredientes.TIPO_2; // Lechuga (30%)
+            tipoIngrediente = Elementos.TIPO_2; // Lechuga (30%)
         } else if (probabilidad < 90) {
-            tipoIngrediente = Ingredientes.TIPO_3; // Queso (20%)
+            tipoIngrediente = Elementos.TIPO_3; // Queso (20%)
         } else {
-            tipoIngrediente = Ingredientes.TIPO_4; // Campana dorada (10%)
+            tipoIngrediente = Elementos.TIPO_4; // Campana dorada (10%)
         }
 
-        ingredientes = new Ingredientes(ingredienteX, ingredienteY, tipoIngrediente);
+        ingredientes = new Elementos(ingredienteX, ingredienteY, tipoIngrediente);
     }
 
 }

@@ -71,7 +71,7 @@ public class MainMenuScreen extends Pantalla {
         Graficos g = juego.getGraphics();
 
         // Dibujar el fondo primero
-        g.drawPixmap(Assets.fondo2, 0, 0);
+        g.drawPixmap(Assets.fondo, 0, 0);
 
         // Dibujar Toolbar encima del fondo
         int toolbarHeight = 40;

@@ -13,7 +13,7 @@ public class LoadingScreen extends Pantalla{
     @Override
     public void update(float deltaTime) {
         Graficos g = juego.getGraphics();
-        Assets.fondo2 = g.newPixmap("fondo2.png", PixmapFormat.RGB565);
+        Assets.fondo = g.newPixmap("fondo.png", PixmapFormat.RGB565);
         Assets.pizarra = g.newPixmap("pizarra.png", PixmapFormat.ARGB4444);
         Assets.menu = g.newPixmap("menu.png", PixmapFormat.ARGB4444);
         Assets.botones = g.newPixmap("botones.png", PixmapFormat.ARGB4444);
@@ -29,14 +29,14 @@ public class LoadingScreen extends Pantalla{
         Assets.hackerizquierda = g.newPixmap("hackerizquierda.png", PixmapFormat.ARGB4444);
         Assets.hackerabajo = g.newPixmap("hackerabajo.png", PixmapFormat.ARGB4444);
         Assets.hackerderecha = g.newPixmap("hackerderecha.png", PixmapFormat.ARGB4444);
-        Assets.campana = g.newPixmap("campana.png", PixmapFormat.ARGB4444);
-        Assets.lechuga = g.newPixmap("lechuga.png", PixmapFormat.ARGB4444);
-        Assets.tomate = g.newPixmap("tomate.png", PixmapFormat.ARGB4444);
-        Assets.queso = g.newPixmap("queso.png", PixmapFormat.ARGB4444);
-        Assets.campanaDorada = g.newPixmap("campanaDorada.png", PixmapFormat.ARGB4444);
-        Assets.gusano = g.newPixmap("gusano.png", PixmapFormat.ARGB4444);
-        Assets.cuchillo = g.newPixmap("cuchillo.png", PixmapFormat.ARGB4444);
-        Assets.tenedor = g.newPixmap("tenedor.png", PixmapFormat.ARGB4444);
+        Assets.escudo = g.newPixmap("escudo.png", PixmapFormat.ARGB4444);
+        Assets.virus_5ptos = g.newPixmap("virus_5ptos.png", PixmapFormat.ARGB4444);
+        Assets.virus_7ptos = g.newPixmap("virus_7ptos.png", PixmapFormat.ARGB4444);
+        Assets.virus_10ptos = g.newPixmap("virus_10ptos.png", PixmapFormat.ARGB4444);
+        Assets.escudoDorado = g.newPixmap("escudoDorado.png", PixmapFormat.ARGB4444);
+        Assets.malware = g.newPixmap("malware.png", PixmapFormat.ARGB4444);
+        Assets.calavera1 = g.newPixmap("calavera1.png", PixmapFormat.ARGB4444);
+        Assets.calavera2 = g.newPixmap("calavera2.png", PixmapFormat.ARGB4444);
         Assets.clic = juego.getAudio().nuevoSonido("clic.ogg");
         Assets.beep = juego.getAudio().nuevoSonido("beep.ogg");
         Assets.error = juego.getAudio().nuevoSonido("error.ogg");

@@ -1,7 +1,7 @@
 package com.ldm.elGranHacker.juego;
 
 import java.util.List;
-import android.graphics.Color;
+
 import com.ldm.elGranHacker.Juego;
 import com.ldm.elGranHacker.Graficos;
 import com.ldm.elGranHacker.Input.TouchEvent;
@@ -133,7 +133,7 @@ public class PantallaJuego extends Pantalla {
         Graficos g = juego.getGraphics();
 
         if (g != null) { // Verifica que g no sea null
-            g.drawPixmap(Assets.fondo2, 0, 0);
+            g.drawPixmap(Assets.fondo, 0, 0);
             drawWorld(mundo);
             if (estado == EstadoJuego.Preparado)
                 drawReadyUI();
@@ -150,23 +150,23 @@ public class PantallaJuego extends Pantalla {
     private void drawWorld(Mundo mundo) {
         Graficos g = juego.getGraphics();
         JollyRoger jollyroger = mundo.jollyroger;
-        Campanas head = jollyroger.partes.get(0);
+        Escudos head = jollyroger.partes.get(0);
 
         Pixmap stainPixmap = null;
-        if (mundo.ingredientes.tipo == Ingredientes.TIPO_1)
-            stainPixmap = Assets.lechuga;
-        if (mundo.ingredientes.tipo == Ingredientes.TIPO_2)
-            stainPixmap = Assets.tomate;
-        if (mundo.ingredientes.tipo == Ingredientes.TIPO_3)
-            stainPixmap = Assets.queso;
-        if (mundo.ingredientes.tipo == Ingredientes.TIPO_4)
-            stainPixmap = Assets.campanaDorada;
+        if (mundo.ingredientes.tipo == Elementos.TIPO_1)
+            stainPixmap = Assets.virus_5ptos;
+        if (mundo.ingredientes.tipo == Elementos.TIPO_2)
+            stainPixmap = Assets.virus_7ptos;
+        if (mundo.ingredientes.tipo == Elementos.TIPO_3)
+            stainPixmap = Assets.virus_10ptos;
+        if (mundo.ingredientes.tipo == Elementos.TIPO_4)
+            stainPixmap = Assets.escudoDorado;
 
         g.drawPixmap(stainPixmap, mundo.ingredientes.x * 32, mundo.ingredientes.y * 32);
 
-        // Dibujar todos los gusanos activos
-        for (Ingredientes gusano : mundo.getGusanos()) {
-            g.drawPixmap(Assets.gusano, gusano.x * 32, gusano.y * 32);
+        // Dibujar todos los malware activos
+        for (Elementos malware : mundo.getGusanos()) {
+            g.drawPixmap(Assets.malware, malware.x * 32, malware.y * 32);
         }
 
         // Dibujar los obstáculos
@@ -174,10 +174,10 @@ public class PantallaJuego extends Pantalla {
             Pixmap obstaculoPixmap = null;
 
             // Asignar la imagen correspondiente según el tipo
-            if (obstaculo.tipo == 1) { // Cuchillo
-                obstaculoPixmap = Assets.cuchillo;
-            } else if (obstaculo.tipo == 2) { // Tenedor
-                obstaculoPixmap = Assets.tenedor;
+            if (obstaculo.tipo == 1) { // calavera1
+                obstaculoPixmap = Assets.calavera1;
+            } else if (obstaculo.tipo == 2) { // calavera2
+                obstaculoPixmap = Assets.calavera2;
             }
 
             if (obstaculoPixmap != null) {
@@ -186,13 +186,13 @@ public class PantallaJuego extends Pantalla {
         }
 
 
-        // Dibujar la cola del chef
+        // Dibujar la cola del hacker
         for (int i = 1; i < jollyroger.partes.size(); i++) {
-            Campanas part = jollyroger.partes.get(i);
-            g.drawPixmap(Assets.campana, part.x * 32, part.y * 32);
+            Escudos part = jollyroger.partes.get(i);
+            g.drawPixmap(Assets.escudo, part.x * 32, part.y * 32);
         }
 
-        // Dibujar la cabeza del chef
+        // Dibujar la cabeza del hacker
         Pixmap headPixmap = null;
         if (jollyroger.direccion == JollyRoger.ARRIBA)
             headPixmap = Assets.hackerarriba;

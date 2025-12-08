@@ -9,14 +9,14 @@ public class JollyRoger {
     public static final int ABAJO = 2;
     public static final int DERECHA = 3;
 
-    public List<Campanas> partes = new ArrayList<>();
+    public List<Escudos> partes = new ArrayList<>();
     public int direccion;
 
     public JollyRoger() {
         direccion = ARRIBA;
-        partes.add(new Campanas(5, 6));
-        partes.add(new Campanas(5, 7));
-        partes.add(new Campanas(5, 8));
+        partes.add(new Escudos(5, 6));
+        partes.add(new Escudos(5, 7));
+        partes.add(new Escudos(5, 8));
     }
 
     public void girarIzquierda() {
@@ -32,17 +32,17 @@ public class JollyRoger {
     }
 
     public void anadirCampana() {
-        Campanas end = partes.get(partes.size()-1);
-        partes.add(new Campanas(end.x, end.y));
+        Escudos end = partes.get(partes.size()-1);
+        partes.add(new Escudos(end.x, end.y));
     }
 
     public void avance() {
-        Campanas chef = partes.get(0);
+        Escudos chef = partes.get(0);
 
         int len = partes.size() - 1;
         for(int i = len; i > 0; i--) {
-            Campanas antes = partes.get(i-1);
-            Campanas parte = partes.get(i);
+            Escudos antes = partes.get(i-1);
+            Escudos parte = partes.get(i);
             parte.x = antes.x;
             parte.y = antes.y;
         }
@@ -68,9 +68,9 @@ public class JollyRoger {
 
     public boolean comprobarChoque() {
         int len = partes.size();
-        Campanas chef = partes.get(0);
+        Escudos chef = partes.get(0);
         for(int i = 1; i < len; i++) {
-            Campanas parte = partes.get(i);
+            Escudos parte = partes.get(i);
             if(parte.x == chef.x && parte.y == chef.y)
                 return true;
         }

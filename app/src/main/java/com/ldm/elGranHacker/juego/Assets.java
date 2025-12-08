@@ -4,7 +4,7 @@ import com.ldm.elGranHacker.Pixmap;
 import com.ldm.elGranHacker.Sonido;
 
 public class Assets {
-    public static Pixmap fondo2;
+    public static Pixmap fondo;
     public static Pixmap pizarra;
     public static Pixmap menu;
     public static Pixmap botones;
@@ -20,14 +20,14 @@ public class Assets {
     public static Pixmap hackerizquierda;
     public static Pixmap hackerabajo;
     public static Pixmap hackerderecha;
-    public static Pixmap campana;
-    public static Pixmap lechuga;
-    public static Pixmap tomate;
-    public static Pixmap queso;
-    public static Pixmap gusano;
-    public static Pixmap campanaDorada;
-    public static Pixmap cuchillo;
-    public static Pixmap tenedor;
+    public static Pixmap escudo;
+    public static Pixmap virus_5ptos;
+    public static Pixmap virus_7ptos;
+    public static Pixmap virus_10ptos;
+    public static Pixmap malware;
+    public static Pixmap escudoDorado;
+    public static Pixmap calavera1;
+    public static Pixmap calavera2;
 
     public static Sonido clic;
     public static Sonido error;
