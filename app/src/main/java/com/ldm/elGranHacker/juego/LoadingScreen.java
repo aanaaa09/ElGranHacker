@@ -40,7 +40,7 @@ public class LoadingScreen extends Pantalla{
         Assets.clic = juego.getAudio().nuevoSonido("clic.ogg");
         Assets.beep = juego.getAudio().nuevoSonido("beep.ogg");
         Assets.error = juego.getAudio().nuevoSonido("error.ogg");
-        Assets.asco = juego.getAudio().nuevoSonido("asco.ogg");
+        Assets.virus = juego.getAudio().nuevoSonido("virus.ogg");
 
 
         Configuraciones.cargar(juego.getFileIO());

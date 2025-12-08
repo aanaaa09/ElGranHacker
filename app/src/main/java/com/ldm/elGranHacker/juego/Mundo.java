@@ -169,7 +169,7 @@ public class Mundo {
 
         // Reproducir sonido de gusano
         if (Configuraciones.sonidoHabilitado) {
-            Assets.asco.play(1);
+            Assets.virus.play(1);
         }
     }
 

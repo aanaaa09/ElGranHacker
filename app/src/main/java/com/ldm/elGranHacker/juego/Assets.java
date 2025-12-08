@@ -32,6 +32,6 @@ public class Assets {
     public static Sonido clic;
     public static Sonido error;
     public static Sonido beep;
-    public static Sonido asco;
+    public static Sonido virus;
 
 }
