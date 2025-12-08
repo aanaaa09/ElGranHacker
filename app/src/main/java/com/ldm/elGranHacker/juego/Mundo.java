@@ -73,8 +73,8 @@ public class Mundo {
                 Obstaculo objeto = obstaculos.get(i);
                 if (head.x == objeto.x && head.y == objeto.y) {
                     // Reproducir el sonido de plato roto
-                    if (Configuraciones.sonidoHabilitado && Assets.platoroto != null) {
-                        Assets.platoroto.play(1); // Corrige el error tipográfico
+                    if (Configuraciones.sonidoHabilitado && Assets.error != null) {
+                        Assets.error.play(1); // Corrige el error tipográfico
                     }
 
                     // Terminar el juego

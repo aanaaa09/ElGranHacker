@@ -77,14 +77,14 @@ public class PantallaJuego extends Pantalla {
         mundo.update(deltaTime);
         if(mundo.finalJuego) {
             if(Configuraciones.sonidoHabilitado)
-                Assets.platoroto.play(1);
+                Assets.error.play(1);
             estado = EstadoJuego.FinJuego;
         }
         if(antiguaPuntuacion != mundo.puntuacion) {
             antiguaPuntuacion = mundo.puntuacion;
             puntuacion = "" + antiguaPuntuacion;
             if(Configuraciones.sonidoHabilitado && !mundo.gusanoFueComido())
-                Assets.comer.play(1);
+                Assets.beep.play(1);
         }
     }
 

@@ -38,8 +38,8 @@ public class LoadingScreen extends Pantalla{
         Assets.cuchillo = g.newPixmap("cuchillo.png", PixmapFormat.ARGB4444);
         Assets.tenedor = g.newPixmap("tenedor.png", PixmapFormat.ARGB4444);
         Assets.clic = juego.getAudio().nuevoSonido("clic.ogg");
-        Assets.comer = juego.getAudio().nuevoSonido("comer.ogg");
-        Assets.platoroto = juego.getAudio().nuevoSonido("platoroto.ogg");
+        Assets.beep = juego.getAudio().nuevoSonido("beep.ogg");
+        Assets.error = juego.getAudio().nuevoSonido("error.ogg");
         Assets.asco = juego.getAudio().nuevoSonido("asco.ogg");
 
 

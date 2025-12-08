@@ -30,8 +30,8 @@ public class Assets {
     public static Pixmap tenedor;
 
     public static Sonido clic;
-    public static Sonido platoroto;
-    public static Sonido comer;
+    public static Sonido error;
+    public static Sonido beep;
     public static Sonido asco;
 
 }
