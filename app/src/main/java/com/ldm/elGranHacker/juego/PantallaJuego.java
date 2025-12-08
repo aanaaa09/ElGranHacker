@@ -197,9 +197,9 @@ public class PantallaJuego extends Pantalla {
         if (jollyroger.direccion == JollyRoger.ARRIBA)
             headPixmap = Assets.hackerarriba;
         if (jollyroger.direccion == JollyRoger.IZQUIERDA)
-            headPixmap = Assets.chefizquierda;
+            headPixmap = Assets.hackerizquierda;
         if (jollyroger.direccion == JollyRoger.ABAJO)
-            headPixmap = Assets.chefabajo;
+            headPixmap = Assets.hackerabajo;
         if (jollyroger.direccion == JollyRoger.DERECHA)
             headPixmap = Assets.hackerderecha;
 

@@ -17,8 +17,8 @@ public class Assets {
     public static Pixmap menupausa;
     public static Pixmap finjuego;
     public static Pixmap hackerarriba;
-    public static Pixmap chefizquierda;
-    public static Pixmap chefabajo;
+    public static Pixmap hackerizquierda;
+    public static Pixmap hackerabajo;
     public static Pixmap hackerderecha;
     public static Pixmap campana;
     public static Pixmap lechuga;

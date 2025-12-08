@@ -26,8 +26,8 @@ public class LoadingScreen extends Pantalla{
         Assets.menupausa = g.newPixmap("menupausa.png", PixmapFormat.ARGB4444);
         Assets.finjuego = g.newPixmap("finjuego.png", PixmapFormat.ARGB4444);
         Assets.hackerarriba = g.newPixmap("hackerarriba.png", PixmapFormat.ARGB4444);
-        Assets.chefizquierda = g.newPixmap("chefizquierda.png", PixmapFormat.ARGB4444);
-        Assets.chefabajo = g.newPixmap("chefabajo.png", PixmapFormat.ARGB4444);
+        Assets.hackerizquierda = g.newPixmap("hackerizquierda.png", PixmapFormat.ARGB4444);
+        Assets.hackerabajo = g.newPixmap("hackerabajo.png", PixmapFormat.ARGB4444);
         Assets.hackerderecha = g.newPixmap("hackerderecha.png", PixmapFormat.ARGB4444);
         Assets.campana = g.newPixmap("campana.png", PixmapFormat.ARGB4444);
         Assets.lechuga = g.newPixmap("lechuga.png", PixmapFormat.ARGB4444);
