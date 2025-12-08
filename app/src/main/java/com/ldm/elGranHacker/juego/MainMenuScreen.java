@@ -82,8 +82,8 @@ public class MainMenuScreen extends Pantalla {
 
 
         // Dibujar texto del toolbar
-        String tituloToolbar = "El Chef Maestro";
-        int textColor = 0xFFFFFFFF; // Blanco
+        String tituloToolbar = "EL GRAN HACKER";
+        int textColor = 0xFF0A0E27;
         int textSize = 20;          // Tamaño del texto
         int textY = toolbarHeight / 2 + textSize / 2 - 5; // Centrar verticalmente
 

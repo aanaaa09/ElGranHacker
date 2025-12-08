@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Colores Material -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,5 +8,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="brown_pastel">#bfa483 </color>
+
+    <!-- Colores Cyberpunk/Hacker Theme -->
+    <color name="cyber_dark">#0A0E27</color>
+    <color name="cyber_darker">#050814</color>
+    <color name="cyber_purple">#8338EC</color>
+    <color name="cyber_pink">#FF006E</color>
+    <color name="cyber_blue">#3A86FF</color>
+    <color name="cyber_cyan">#00F5FF</color>
+    <color name="cyber_green">#39FF14</color>
+    <color name="cyber_orange">#FB5607</color>
+
+    <!-- Colores para UI específicos -->
+    <color name="toolbar_bg">#0A0E27</color>
+    <color name="background_game">#050814</color>
 </resources>

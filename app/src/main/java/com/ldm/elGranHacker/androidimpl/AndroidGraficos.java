@@ -83,8 +83,7 @@ public class AndroidGraficos implements Graficos {
     // Limpia el lienzo con un color especificado
     @Override
     public void clear(int color) {
-        canvas.drawRGB((color & 0xff0000) >> 16, (color & 0xff00) >> 8,
-                (color & 0xff));
+        canvas.drawRGB(10, 14, 39);
     }
 
     // Dibuja un píxel en la posición especificada
