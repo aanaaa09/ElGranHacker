@@ -24,9 +24,10 @@ public class PantallaJuego extends Pantalla {
 
     public PantallaJuego(Juego juego, boolean modoExtremo) {
         super(juego);
-        this.modoExtremo = modoExtremo; // Almacena si es modo extremo o no
+        this.modoExtremo = modoExtremo;
         mundo = new Mundo(modoExtremo);
     }
+
     public PantallaJuego(Juego juego) {
         this(juego, false);
     }
@@ -66,10 +67,10 @@ public class PantallaJuego extends Pantalla {
             }
             if(event.type == TouchEvent.TOUCH_DOWN) {
                 if(event.x < 64 && event.y > 416) {
-                    mundo.jollyroger.girarIzquierda();
+                    mundo.hacker.girarIzquierda();
                 }
                 if(event.x > 256 && event.y > 416) {
-                    mundo.jollyroger.girarDerecha();
+                    mundo.hacker.girarDerecha();
                 }
             }
         }
@@ -83,7 +84,7 @@ public class PantallaJuego extends Pantalla {
         if(antiguaPuntuacion != mundo.puntuacion) {
             antiguaPuntuacion = mundo.puntuacion;
             puntuacion = "" + antiguaPuntuacion;
-            if(Configuraciones.sonidoHabilitado && !mundo.gusanoFueComido())
+            if(Configuraciones.sonidoHabilitado && !mundo.malwareFueComido())
                 Assets.beep.play(1);
         }
     }
@@ -132,7 +133,7 @@ public class PantallaJuego extends Pantalla {
     public void present(float deltaTime) {
         Graficos g = juego.getGraphics();
 
-        if (g != null) { // Verifica que g no sea null
+        if (g != null) {
             g.drawPixmap(Assets.fondo, 0, 0);
             drawWorld(mundo);
             if (estado == EstadoJuego.Preparado)
@@ -147,44 +148,45 @@ public class PantallaJuego extends Pantalla {
             drawText(g, puntuacion, g.getWidth() / 2 - puntuacion.length() * 20 / 2, g.getHeight() - 42);
         }
     }
+
     private void drawWorld(Mundo mundo) {
         Graficos g = juego.getGraphics();
-        Hacker jollyroger = mundo.jollyroger;
+        Hacker jollyroger = mundo.hacker;
         Escudos head = jollyroger.partes.get(0);
 
-        Pixmap stainPixmap = null;
-        if (mundo.ingredientes.tipo == Elementos.TIPO_1)
-            stainPixmap = Assets.virus_5ptos;
-        if (mundo.ingredientes.tipo == Elementos.TIPO_2)
-            stainPixmap = Assets.virus_7ptos;
-        if (mundo.ingredientes.tipo == Elementos.TIPO_3)
-            stainPixmap = Assets.virus_10ptos;
-        if (mundo.ingredientes.tipo == Elementos.TIPO_4)
-            stainPixmap = Assets.escudoDorado;
+        // Dibujar virus (antes ingredientes)
+        Pixmap virusPixmap = null;
+        if (mundo.virus.tipo == Elementos.TIPO_1)
+            virusPixmap = Assets.virus_5ptos;
+        if (mundo.virus.tipo == Elementos.TIPO_2)
+            virusPixmap = Assets.virus_7ptos;
+        if (mundo.virus.tipo == Elementos.TIPO_3)
+            virusPixmap = Assets.virus_10ptos;
+        if (mundo.virus.tipo == Elementos.TIPO_4)
+            virusPixmap = Assets.escudoDorado;
 
-        g.drawPixmap(stainPixmap, mundo.ingredientes.x * 32, mundo.ingredientes.y * 32);
+        g.drawPixmap(virusPixmap, mundo.virus.x * 32, mundo.virus.y * 32);
 
-        // Dibujar todos los malware activos
-        for (Elementos malware : mundo.getGusanos()) {
+        // Dibujar todos los malwares activos (antes gusanos)
+        for (Elementos malware : mundo.getMalwares()) {
             g.drawPixmap(Assets.malware, malware.x * 32, malware.y * 32);
         }
 
-        // Dibujar los obstáculos
-        for (Obstaculo obstaculo : mundo.getObstaculos()) {
-            Pixmap obstaculoPixmap = null;
+        // Dibujar las calaveras (antes obstáculos)
+        for (Obstaculo calavera : mundo.getCalaveras()) {
+            Pixmap calaveraPixmap = null;
 
             // Asignar la imagen correspondiente según el tipo
-            if (obstaculo.tipo == 1) { // calavera1
-                obstaculoPixmap = Assets.calavera1;
-            } else if (obstaculo.tipo == 2) { // calavera2
-                obstaculoPixmap = Assets.calavera2;
+            if (calavera.tipo == 1) {
+                calaveraPixmap = Assets.calavera1;
+            } else if (calavera.tipo == 2) {
+                calaveraPixmap = Assets.calavera2;
             }
 
-            if (obstaculoPixmap != null) {
-                g.drawPixmap(obstaculoPixmap, obstaculo.x * 32, obstaculo.y * 32);
+            if (calaveraPixmap != null) {
+                g.drawPixmap(calaveraPixmap, calavera.x * 32, calavera.y * 32);
             }
         }
-
 
         // Dibujar la cola del hacker
         for (int i = 1; i < jollyroger.partes.size(); i++) {

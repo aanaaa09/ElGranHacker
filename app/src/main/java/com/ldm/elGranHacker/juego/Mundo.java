@@ -1,44 +1,42 @@
 package com.ldm.elGranHacker.juego;
 
 import java.util.Random;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Mundo {
     static final int MUNDO_ANCHO = 10;
     static final int MUNDO_ALTO = 13;
-    //static final int INCREMENTO_PUNTUACION = 10;
     static final float TICK_INICIAL = 0.5f;
     static final float TICK_DECREMENTO = 0.05f;
-    private static final float DURACION_GUSANO = 10.0f;
-    private static final float DURACION_OBJETO = 10.0f;
+    private static final float DURACION_MALWARE = 10.0f;
+    private static final float DURACION_CALAVERA = 10.0f;
 
-    public Hacker jollyroger;
-    public Elementos ingredientes;
+    public Hacker hacker;
+    public Elementos virus;
     public boolean finalJuego = false;
     public int puntuacion = 0;
-    private boolean gusanoComido = false;
+    private boolean malwareComido = false;
 
-    private List<Obstaculo> obstaculos = new ArrayList<>();
-    private List<Elementos> gusanos = new ArrayList<>(); // Lista para múltiples gusanos
-    private boolean modoExtremo; // Bandera para distinguir entre modos
+    private List<Obstaculo> calaveras = new ArrayList<>();
+    private List<Elementos> malwares = new ArrayList<>();
+    private boolean modoExtremo;
     private Random random = new Random();
 
     float tiempoTick = 0;
     static float tick = TICK_INICIAL;
 
     public Mundo(boolean modoExtremo) {
-        this.modoExtremo = modoExtremo; // Almacena si es modo extremo o no
-        jollyroger = new Hacker();
+        this.modoExtremo = modoExtremo;
+        hacker = new Hacker();
 
         do {
-            colocarIngredientes(); // Coloca el primer botín
-        } while (ingredientes.x == jollyroger.partes.get(0).x && ingredientes.y == jollyroger.partes.get(0).y);
+            colocarVirus();
+        } while (virus.x == hacker.partes.get(0).x && virus.y == hacker.partes.get(0).y);
     }
 
-    public List<Elementos> getGusanos() {
-        return gusanos;
+    public List<Elementos> getMalwares() {
+        return malwares;
     }
 
     public void update(float deltaTime) {
@@ -48,106 +46,106 @@ public class Mundo {
 
         while (tiempoTick > tick) {
             tiempoTick -= tick;
-            jollyroger.avance();
+            hacker.avance();
 
-            // Verificar colisiones del chef con su propia cola
-            if (jollyroger.comprobarChoque()) {
+            // Verificar colisiones del hacker con su propia cola
+            if (hacker.comprobarChoque()) {
                 finalJuego = true;
                 return;
             }
 
-            Escudos head = jollyroger.partes.get(0);
+            Escudos head = hacker.partes.get(0);
 
-            if (head.x == ingredientes.x && head.y == ingredientes.y) {
-                manejarIngredientes();
+            if (head.x == virus.x && head.y == virus.y) {
+                manejarVirus();
             }
 
-            // Manejar gusanos
-            for (int i = gusanos.size() - 1; i >= 0; i--) {
-                Elementos gusano = gusanos.get(i);
-                if (head.x == gusano.x && head.y == gusano.y) {
-                    manejarGusano(i);
+            // Manejar malwares
+            for (int i = malwares.size() - 1; i >= 0; i--) {
+                Elementos malware = malwares.get(i);
+                if (head.x == malware.x && head.y == malware.y) {
+                    manejarMalware(i);
                 }
             }
-            for (int i = obstaculos.size() - 1; i >= 0; i--) {
-                Obstaculo objeto = obstaculos.get(i);
-                if (head.x == objeto.x && head.y == objeto.y) {
-                    // Reproducir el sonido de plato roto
+
+            // Manejar calaveras
+            for (int i = calaveras.size() - 1; i >= 0; i--) {
+                Obstaculo calavera = calaveras.get(i);
+                if (head.x == calavera.x && head.y == calavera.y) {
                     if (Configuraciones.sonidoHabilitado && Assets.error != null) {
-                        Assets.error.play(1); // Corrige el error tipográfico
+                        Assets.error.play(1);
                     }
-
-                    // Terminar el juego
                     finalJuego = true;
-
-                    // Eliminar el obstáculo (opcional)
-                    obstaculos.remove(i);
+                    calaveras.remove(i);
                     return;
                 }
             }
         }
 
-        // Generar cosas
+        // Generar malwares
         if (modoExtremo) {
-            if (random.nextInt(1000) < 5) { // Mayor probabilidad en modo extremo
-                generarGusano();
+            if (random.nextInt(1000) < 5) {
+                generarMalware();
             }
         } else {
-            if (gusanos.isEmpty() && random.nextInt(1000) < 3) { // Menor probabilidad en modo normal
-                generarGusano();
+            if (malwares.isEmpty() && random.nextInt(1000) < 3) {
+                generarMalware();
             }
         }
 
+        // Generar calaveras
         if (modoExtremo) {
-            if (random.nextInt(1000) < 3) { // Mayor probabilidad en modo extremo
-                generarObstaculo();
+            if (random.nextInt(1000) < 3) {
+                generarCalavera();
             }
         } else {
-            if (obstaculos.isEmpty() && random.nextInt(1000) < 1) { // Menor probabilidad en modo normal
-                generarObstaculo();
+            if (calaveras.isEmpty() && random.nextInt(1000) < 1) {
+                generarCalavera();
             }
         }
 
-        // Controlar tiempo de vida de los gusanos
-        for (int i = gusanos.size() - 1; i >= 0; i--) {
-            Elementos gusano = gusanos.get(i);
-            gusano.tiempoVida += deltaTime;
-            if (gusano.tiempoVida > DURACION_GUSANO) {
-                gusanos.remove(i); // Eliminar gusano si se acaba el tiempo
+        // Controlar tiempo de vida de los malwares
+        for (int i = malwares.size() - 1; i >= 0; i--) {
+            Elementos malware = malwares.get(i);
+            malware.tiempoVida += deltaTime;
+            if (malware.tiempoVida > DURACION_MALWARE) {
+                malwares.remove(i);
             }
         }
-        for (int i = obstaculos.size() - 1; i >= 0; i--) {
-            Obstaculo objeto = obstaculos.get(i);
-            objeto.tiempoVida += deltaTime;
-            if (objeto.tiempoVida > DURACION_OBJETO) {
-                obstaculos.remove(i); // Eliminar objeto si se acaba el tiempo
+
+        // Controlar tiempo de vida de las calaveras
+        for (int i = calaveras.size() - 1; i >= 0; i--) {
+            Obstaculo calavera = calaveras.get(i);
+            calavera.tiempoVida += deltaTime;
+            if (calavera.tiempoVida > DURACION_CALAVERA) {
+                calaveras.remove(i);
             }
         }
     }
 
-    private void manejarIngredientes() {
-        switch (ingredientes.tipo) {
-            case Elementos.TIPO_1: // Tomate
+    private void manejarVirus() {
+        switch (virus.tipo) {
+            case Elementos.TIPO_1: // virus_5ptos (antes Lechuga)
                 puntuacion += 5;
                 break;
-            case Elementos.TIPO_2: // Lechuga
+            case Elementos.TIPO_2: // virus_7ptos (antes Tomate)
                 puntuacion += 7;
                 break;
-            case Elementos.TIPO_3: // Queso
+            case Elementos.TIPO_3: // virus_10ptos (antes Queso)
                 puntuacion += 10;
-                // Aumentar la velocidad del juego al tocar el queso
+                // Aumentar la velocidad del juego
                 if (tick > 0.1f) {
                     tick -= 0.05f;
-                    break;
                 }
-            case Elementos.TIPO_4: // Campana dorada
+                break;
+            case Elementos.TIPO_4: // escudoDorado (antes Campana)
                 puntuacion += 20;
-                jollyroger.anadirEscudo();
+                hacker.anadirEscudo();
                 break;
         }
 
-        jollyroger.anadirEscudo();
-        colocarIngredientes();
+        hacker.anadirEscudo();
+        colocarVirus();
 
         // Incremento de velocidad por puntuación
         if (modoExtremo) {
@@ -159,92 +157,84 @@ public class Mundo {
         }
     }
 
-    private void manejarGusano(int index) {
+    private void manejarMalware(int index) {
         puntuacion -= 10;
         if (puntuacion < 0) puntuacion = 0;
 
-        jollyroger.anadirEscudo();
-        gusanos.remove(index); // Elimina el gusano de la lista
-        gusanoComido = true;
+        hacker.anadirEscudo();
+        malwares.remove(index);
+        malwareComido = true;
 
-        // Reproducir sonido de gusano
         if (Configuraciones.sonidoHabilitado) {
             Assets.virus.play(1);
         }
     }
 
-    public boolean isGusanoActivo() {
-        return !gusanos.isEmpty(); // Devuelve true si hay al menos un gusano en la lista
+    public boolean isMalwareActivo() {
+        return !malwares.isEmpty();
     }
 
-
-    private void generarGusano() {
-        int gusanoX, gusanoY;
+    private void generarMalware() {
+        int malwareX, malwareY;
         do {
-            gusanoX = random.nextInt(MUNDO_ANCHO);
-            gusanoY = random.nextInt(MUNDO_ALTO);
-        } while (camposOcupados(gusanoX, gusanoY)); // Evita colocar sobre otros objetos
+            malwareX = random.nextInt(MUNDO_ANCHO);
+            malwareY = random.nextInt(MUNDO_ALTO);
+        } while (camposOcupados(malwareX, malwareY));
 
-        Elementos nuevoGusano = new Elementos(gusanoX, gusanoY, Elementos.TIPO_GUSANO);
-        gusanos.add(nuevoGusano);
+        Elementos nuevoMalware = new Elementos(malwareX, malwareY, Elementos.TIPO_GUSANO);
+        malwares.add(nuevoMalware);
     }
 
-    public boolean gusanoFueComido() {
-        boolean fueComido = gusanoComido;
-        gusanoComido = false; // Resetea el estado después de leerlo
+    public boolean malwareFueComido() {
+        boolean fueComido = malwareComido;
+        malwareComido = false;
         return fueComido;
     }
 
-
-    private void generarObstaculo() {
-        int obstaculoX, obstaculoY;
-        int intentos = 0; // Limitar los intentos para evitar bucles infinitos
+    private void generarCalavera() {
+        int calaveraX, calaveraY;
+        int intentos = 0;
 
         do {
-            obstaculoX = random.nextInt(MUNDO_ANCHO);
-            obstaculoY = random.nextInt(MUNDO_ALTO);
+            calaveraX = random.nextInt(MUNDO_ANCHO);
+            calaveraY = random.nextInt(MUNDO_ALTO);
             intentos++;
-        } while (camposOcupados(obstaculoX, obstaculoY) && intentos < 100);
+        } while (camposOcupados(calaveraX, calaveraY) && intentos < 100);
 
-        // Si no se encontró un espacio libre después de 100 intentos, no se genera el obstáculo
         if (intentos >= 100) {
             return;
         }
 
-        // Generar un tipo aleatorio (1 = cuchillo, 2 = tenedor)
+        // Generar un tipo aleatorio (1 = calavera1, 2 = calavera2)
         int tipo = random.nextInt(2) + 1;
 
-        // Crear el obstáculo con las coordenadas y el tipo asignado
-        Obstaculo nuevoObstaculo = new Obstaculo(obstaculoX, obstaculoY, tipo);
-        obstaculos.add(nuevoObstaculo);
+        Obstaculo nuevaCalavera = new Obstaculo(calaveraX, calaveraY, tipo);
+        calaveras.add(nuevaCalavera);
     }
 
-
-
-    public List<Obstaculo> getObstaculos() {
-        return obstaculos;
+    public List<Obstaculo> getCalaveras() {
+        return calaveras;
     }
 
     private boolean camposOcupados(int x, int y) {
-
-        if (ingredientes != null && ingredientes.x == x && ingredientes.y == y) {
+        if (virus != null && virus.x == x && virus.y == y) {
             return true;
         }
 
-        for (Escudos parte : jollyroger.partes) {
+        for (Escudos parte : hacker.partes) {
             if (parte.x == x && parte.y == y) {
                 return true;
             }
         }
 
-        for (Elementos gusano : gusanos) {
-            if (gusano.x == x && gusano.y == y) {
+        for (Elementos malware : malwares) {
+            if (malware.x == x && malware.y == y) {
                 return true;
             }
         }
 
-        for (Obstaculo obstaculo : obstaculos) {
-            if (obstaculo.x == x && obstaculo.y == y) {
+        for (Obstaculo calavera : calaveras) {
+            if (calavera.x == x && calavera.y == y) {
                 return true;
             }
         }
@@ -252,27 +242,26 @@ public class Mundo {
         return false;
     }
 
-    private void colocarIngredientes() {
-        int ingredienteX, ingredienteY;
+    private void colocarVirus() {
+        int virusX, virusY;
         do {
-            ingredienteX = random.nextInt(MUNDO_ANCHO);
-            ingredienteY = random.nextInt(MUNDO_ALTO);
-        } while (camposOcupados(ingredienteX, ingredienteY));
+            virusX = random.nextInt(MUNDO_ANCHO);
+            virusY = random.nextInt(MUNDO_ALTO);
+        } while (camposOcupados(virusX, virusY));
 
         int probabilidad = random.nextInt(100);
-        int tipoIngrediente;
+        int tipoVirus;
 
         if (probabilidad < 40) {
-            tipoIngrediente = Elementos.TIPO_1; // Tomate (40%)
+            tipoVirus = Elementos.TIPO_1; // virus_5ptos (40%)
         } else if (probabilidad < 70) {
-            tipoIngrediente = Elementos.TIPO_2; // Lechuga (30%)
+            tipoVirus = Elementos.TIPO_2; // virus_7ptos (30%)
         } else if (probabilidad < 90) {
-            tipoIngrediente = Elementos.TIPO_3; // Queso (20%)
+            tipoVirus = Elementos.TIPO_3; // virus_10ptos (20%)
         } else {
-            tipoIngrediente = Elementos.TIPO_4; // Campana dorada (10%)
+            tipoVirus = Elementos.TIPO_4; // escudoDorado (10%)
         }
 
-        ingredientes = new Elementos(ingredienteX, ingredienteY, tipoIngrediente);
+        virus = new Elementos(virusX, virusY, tipoVirus);
     }
-
 }
