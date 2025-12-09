@@ -149,7 +149,7 @@ public class PantallaJuego extends Pantalla {
     }
     private void drawWorld(Mundo mundo) {
         Graficos g = juego.getGraphics();
-        JollyRoger jollyroger = mundo.jollyroger;
+        Hacker jollyroger = mundo.jollyroger;
         Escudos head = jollyroger.partes.get(0);
 
         Pixmap stainPixmap = null;
@@ -194,13 +194,13 @@ public class PantallaJuego extends Pantalla {
 
         // Dibujar la cabeza del hacker
         Pixmap headPixmap = null;
-        if (jollyroger.direccion == JollyRoger.ARRIBA)
+        if (jollyroger.direccion == Hacker.ARRIBA)
             headPixmap = Assets.hackerarriba;
-        if (jollyroger.direccion == JollyRoger.IZQUIERDA)
+        if (jollyroger.direccion == Hacker.IZQUIERDA)
             headPixmap = Assets.hackerizquierda;
-        if (jollyroger.direccion == JollyRoger.ABAJO)
+        if (jollyroger.direccion == Hacker.ABAJO)
             headPixmap = Assets.hackerabajo;
-        if (jollyroger.direccion == JollyRoger.DERECHA)
+        if (jollyroger.direccion == Hacker.DERECHA)
             headPixmap = Assets.hackerderecha;
 
         if (headPixmap != null) {

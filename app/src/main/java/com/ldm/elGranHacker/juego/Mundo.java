@@ -14,7 +14,7 @@ public class Mundo {
     private static final float DURACION_GUSANO = 10.0f;
     private static final float DURACION_OBJETO = 10.0f;
 
-    public JollyRoger jollyroger;
+    public Hacker jollyroger;
     public Elementos ingredientes;
     public boolean finalJuego = false;
     public int puntuacion = 0;
@@ -30,7 +30,7 @@ public class Mundo {
 
     public Mundo(boolean modoExtremo) {
         this.modoExtremo = modoExtremo; // Almacena si es modo extremo o no
-        jollyroger = new JollyRoger();
+        jollyroger = new Hacker();
 
         do {
             colocarIngredientes(); // Coloca el primer botín
@@ -142,11 +142,11 @@ public class Mundo {
                 }
             case Elementos.TIPO_4: // Campana dorada
                 puntuacion += 20;
-                jollyroger.anadirCampana();
+                jollyroger.anadirEscudo();
                 break;
         }
 
-        jollyroger.anadirCampana();
+        jollyroger.anadirEscudo();
         colocarIngredientes();
 
         // Incremento de velocidad por puntuación
@@ -163,7 +163,7 @@ public class Mundo {
         puntuacion -= 10;
         if (puntuacion < 0) puntuacion = 0;
 
-        jollyroger.anadirCampana();
+        jollyroger.anadirEscudo();
         gusanos.remove(index); // Elimina el gusano de la lista
         gusanoComido = true;
 
