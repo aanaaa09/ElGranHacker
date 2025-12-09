@@ -75,7 +75,7 @@ public class MainMenuScreen extends Pantalla {
 
         // Dibujar Toolbar encima del fondo
         int toolbarHeight = 40;
-        int toolbarColor = 0xFFD2B48C; // Marrón oscuro visible (formato ARGB)
+        int toolbarColor = 0xFF3A86FF;
 
         // Dibujar rectángulo del toolbar
         g.drawRect(0, 0, g.getWidth(), toolbarHeight, toolbarColor);
