@@ -125,20 +125,20 @@ public class Mundo {
 
     private void manejarVirus() {
         switch (virus.tipo) {
-            case Elementos.TIPO_1: // virus_5ptos (antes Lechuga)
+            case Elementos.TIPO_1: // virus_5ptos
                 puntuacion += 5;
                 break;
-            case Elementos.TIPO_2: // virus_7ptos (antes Tomate)
+            case Elementos.TIPO_2: // virus_7ptos
                 puntuacion += 7;
                 break;
-            case Elementos.TIPO_3: // virus_10ptos (antes Queso)
+            case Elementos.TIPO_3: // virus_10ptos
                 puntuacion += 10;
                 // Aumentar la velocidad del juego
                 if (tick > 0.1f) {
                     tick -= 0.05f;
                 }
                 break;
-            case Elementos.TIPO_4: // escudoDorado (antes Campana)
+            case Elementos.TIPO_4: // escudoDorado
                 puntuacion += 20;
                 hacker.anadirEscudo();
                 break;

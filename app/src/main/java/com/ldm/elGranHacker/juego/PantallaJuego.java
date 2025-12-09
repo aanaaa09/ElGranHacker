@@ -154,7 +154,7 @@ public class PantallaJuego extends Pantalla {
         Hacker jollyroger = mundo.hacker;
         Escudos head = jollyroger.partes.get(0);
 
-        // Dibujar virus (antes ingredientes)
+        // Dibujar virus
         Pixmap virusPixmap = null;
         if (mundo.virus.tipo == Elementos.TIPO_1)
             virusPixmap = Assets.virus_5ptos;
@@ -167,12 +167,12 @@ public class PantallaJuego extends Pantalla {
 
         g.drawPixmap(virusPixmap, mundo.virus.x * 32, mundo.virus.y * 32);
 
-        // Dibujar todos los malwares activos (antes gusanos)
+        // Dibujar todos los malwares activos
         for (Elementos malware : mundo.getMalwares()) {
             g.drawPixmap(Assets.malware, malware.x * 32, malware.y * 32);
         }
 
-        // Dibujar las calaveras (antes obstáculos)
+        // Dibujar las calaveras
         for (Obstaculo calavera : mundo.getCalaveras()) {
             Pixmap calaveraPixmap = null;
 
