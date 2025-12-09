@@ -5,16 +5,16 @@ import com.ldm.elGranHacker.Sonido;
 
 public class Assets {
     public static Pixmap fondo;
-    public static Pixmap pizarra;
-    public static Pixmap menu;
-    public static Pixmap botones;
-    public static Pixmap ayuda1;
-    public static Pixmap ayuda2;
-    public static Pixmap ayuda3;
+    public static Pixmap logo;
+    public static Pixmap modos;
+    public static Pixmap buttons;
+    public static Pixmap ayuda_1;
+    public static Pixmap ayuda_2;
+    public static Pixmap ayuda_3;
     public static Pixmap numeros;
-    public static Pixmap preparadoE;
-    public static Pixmap preparadoN;
-    public static Pixmap menupausa;
+    public static Pixmap inicioD;
+    public static Pixmap inicioN;
+    public static Pixmap menupausa1;
     public static Pixmap finjuego;
     public static Pixmap hackerarriba;
     public static Pixmap hackerizquierda;

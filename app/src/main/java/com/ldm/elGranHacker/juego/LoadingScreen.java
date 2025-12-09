@@ -14,16 +14,16 @@ public class LoadingScreen extends Pantalla{
     public void update(float deltaTime) {
         Graficos g = juego.getGraphics();
         Assets.fondo = g.newPixmap("fondo.png", PixmapFormat.RGB565);
-        Assets.pizarra = g.newPixmap("pizarra.png", PixmapFormat.ARGB4444);
-        Assets.menu = g.newPixmap("menu.png", PixmapFormat.ARGB4444);
-        Assets.botones = g.newPixmap("botones.png", PixmapFormat.ARGB4444);
-        Assets.ayuda1 = g.newPixmap("ayuda1.png", PixmapFormat.ARGB4444);
-        Assets.ayuda2 = g.newPixmap("ayuda2.png", PixmapFormat.ARGB4444);
-        Assets.ayuda3 = g.newPixmap("ayuda3.png", PixmapFormat.ARGB4444);
+        Assets.logo = g.newPixmap("pizarra.png", PixmapFormat.ARGB4444);
+        Assets.modos = g.newPixmap("modos.png", PixmapFormat.ARGB4444);
+        Assets.buttons = g.newPixmap("buttons.png", PixmapFormat.ARGB4444);
+        Assets.ayuda_1 = g.newPixmap("ayuda_1.png", PixmapFormat.ARGB4444);
+        Assets.ayuda_2 = g.newPixmap("ayuda_2.png", PixmapFormat.ARGB4444);
+        Assets.ayuda_3 = g.newPixmap("ayuda_3.png", PixmapFormat.ARGB4444);
         Assets.numeros = g.newPixmap("numeros.png", PixmapFormat.ARGB4444);
-        Assets.preparadoN = g.newPixmap("preparadoN.png", PixmapFormat.ARGB4444);
-        Assets.preparadoE = g.newPixmap("preparadoE.png", PixmapFormat.ARGB4444);
-        Assets.menupausa = g.newPixmap("menupausa.png", PixmapFormat.ARGB4444);
+        Assets.inicioN = g.newPixmap("inicioN.png", PixmapFormat.ARGB4444);
+        Assets.inicioD = g.newPixmap("inicioD.png", PixmapFormat.ARGB4444);
+        Assets.menupausa1 = g.newPixmap("menupausa.png", PixmapFormat.ARGB4444);
         Assets.finjuego = g.newPixmap("finjuego.png", PixmapFormat.ARGB4444);
         Assets.hackerarriba = g.newPixmap("hackerarriba.png", PixmapFormat.ARGB4444);
         Assets.hackerizquierda = g.newPixmap("hackerizquierda.png", PixmapFormat.ARGB4444);

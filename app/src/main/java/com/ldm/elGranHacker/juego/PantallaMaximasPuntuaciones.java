@@ -41,7 +41,7 @@ public class PantallaMaximasPuntuaciones extends Pantalla {
         Graficos g = juego.getGraphics();
 
         g.drawPixmap(Assets.fondo, 0, 0);
-        g.drawPixmap(Assets.menu, 50, 20, 0, 60, 215, 25);
+        g.drawPixmap(Assets.modos, 50, 20, 0, 60, 215, 25);
 
         int y = 100;
         for (int i = 0; i < 5; i++) {
@@ -49,7 +49,7 @@ public class PantallaMaximasPuntuaciones extends Pantalla {
             y += 50;
         }
 
-        g.drawPixmap(Assets.botones, 5, 417, 68, 64, 66, 66);
+        g.drawPixmap(Assets.buttons, 5, 417, 68, 64, 66, 66);
     }
 
     public void dibujarTexto(Graficos g, String linea, int x, int y) {

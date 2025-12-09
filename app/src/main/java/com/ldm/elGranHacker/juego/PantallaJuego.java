@@ -213,29 +213,29 @@ public class PantallaJuego extends Pantalla {
 
     private void drawReadyUI() {
         Graficos g = juego.getGraphics();
-        Pixmap preparadoPixmap = modoExtremo ? Assets.preparadoE : Assets.preparadoN;
+        Pixmap preparadoPixmap = modoExtremo ? Assets.inicioD : Assets.inicioN;
         g.drawPixmap(preparadoPixmap, 10, 40);
         g.drawLine(0, 416, 480, 416, 0xFF00F5FF); // Cyan cyberpunk
     }
 
     private void drawRunningUI() {
         Graficos g = juego.getGraphics();
-        g.drawPixmap(Assets.botones, 0, 1, 68, 128, 66, 66);
+        g.drawPixmap(Assets.buttons, 0, 1, 68, 128, 66, 66);
         g.drawLine(0, 416, 480, 416, 0xFF00F5FF); // Cyan cyberpunk
-        g.drawPixmap(Assets.botones, 0, 416, 68, 64, 66, 66);
-        g.drawPixmap(Assets.botones, 256, 416, 5, 64, 66, 66);
+        g.drawPixmap(Assets.buttons, 0, 416, 68, 64, 66, 66);
+        g.drawPixmap(Assets.buttons, 256, 416, 5, 64, 66, 66);
     }
 
     private void drawPausedUI() {
         Graficos g = juego.getGraphics();
-        g.drawPixmap(Assets.menupausa, 60, 120);
+        g.drawPixmap(Assets.menupausa1, 60, 120);
         g.drawLine(0, 416, 480, 416, 0xFF39FF14); // Verde neón
     }
 
     private void drawGameOverUI() {
         Graficos g = juego.getGraphics();
         g.drawPixmap(Assets.finjuego, 36, 100);
-        g.drawPixmap(Assets.botones, 128, 200, 5, 128, 66, 66);
+        g.drawPixmap(Assets.buttons, 128, 200, 5, 128, 66, 66);
         g.drawLine(0, 416, 480, 416, 0xFFFF006E); // Rosa cyberpunk
     }
 

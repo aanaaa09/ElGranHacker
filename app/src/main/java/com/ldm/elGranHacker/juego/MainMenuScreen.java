@@ -90,14 +90,14 @@ public class MainMenuScreen extends Pantalla {
         g.drawText(tituloToolbar, g.getWidth() / 2, textY, textColor, textSize, true);
 
         // Dibujar el resto del menú
-        g.drawPixmap(Assets.pizarra, 90, 45);
-        g.drawPixmap(Assets.menu, 50, 250);
+        g.drawPixmap(Assets.logo, 90, 45);
+        g.drawPixmap(Assets.modos, 50, 250);
 
         // Dibujar botón de sonido
         if (Configuraciones.sonidoHabilitado)
-            g.drawPixmap(Assets.botones, 5, g.getHeight() - 70, 5, 2, 66, 66);
+            g.drawPixmap(Assets.buttons, 5, g.getHeight() - 70, 5, 2, 66, 66);
         else
-            g.drawPixmap(Assets.botones, 5, g.getHeight() - 70, 68, 2, 66, 66);
+            g.drawPixmap(Assets.buttons, 5, g.getHeight() - 70, 68, 2, 66, 66);
     }
 
     @Override
