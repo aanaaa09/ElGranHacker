@@ -27,6 +27,17 @@ public class AndroidFileIO implements FileIO {
             throw new IllegalStateException("No se pudo acceder al almacenamiento externo.");
         }
     }
+    @Override
+    public boolean borrarArchivo(String nombreArchivo) throws IOException {
+        Path path = Paths.get(rutaAlmacenamientoExterno, nombreArchivo);
+        if (Files.exists(path)) {
+            Files.delete(path);
+            return true;
+        }
+        return false;
+    }
+
+
 
     @Override
     public InputStream leerAsset(String nombreArchivo) throws IOException {

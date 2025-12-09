@@ -11,5 +11,7 @@ public interface FileIO {
 
     OutputStream escribirArchivo(String nombreArchivo) throws IOException;
 
+    boolean borrarArchivo(String nombreArchivo) throws IOException;
+
 }
 
