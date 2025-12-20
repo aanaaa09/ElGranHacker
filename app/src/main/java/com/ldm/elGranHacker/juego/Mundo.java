@@ -18,10 +18,10 @@ public class Mundo {
     public int puntuacion = 0;
     private boolean malwareComido = false;
 
-    private List<Obstaculo> calaveras = new ArrayList<>();
-    private List<Elementos> malwares = new ArrayList<>();
-    private boolean modoExtremo;
-    private Random random = new Random();
+    private final List<Obstaculo> calaveras = new ArrayList<>();
+    private final List<Elementos> malwares = new ArrayList<>();
+    private final boolean modoExtremo;
+    private final Random random = new Random();
 
     float tiempoTick = 0;
     static float tick = TICK_INICIAL;
@@ -39,6 +39,7 @@ public class Mundo {
         return malwares;
     }
 
+
     public void update(float deltaTime) {
         if (finalJuego) return;
 
@@ -46,7 +47,18 @@ public class Mundo {
 
         while (tiempoTick > tick) {
             tiempoTick -= tick;
-            hacker.avance();
+
+            // Avanzar el hacker y verificar colisión con paredes
+            boolean colisionPared = hacker.avance(modoExtremo);
+
+            // Si hay colisión con pared en modo extremo, terminar el juego
+            if (colisionPared) {
+                if (Configuraciones.sonidoHabilitado && Assets.error != null) {
+                    Assets.error.play(1);
+                }
+                finalJuego = true;
+                return;
+            }
 
             // Verificar colisiones del hacker con su propia cola
             if (hacker.comprobarChoque()) {
@@ -170,9 +182,6 @@ public class Mundo {
         }
     }
 
-    public boolean isMalwareActivo() {
-        return !malwares.isEmpty();
-    }
 
     private void generarMalware() {
         int malwareX, malwareY;

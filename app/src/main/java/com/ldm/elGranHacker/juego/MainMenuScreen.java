@@ -27,7 +27,7 @@ public class MainMenuScreen extends Pantalla {
                     if (Configuraciones.sonidoHabilitado)
                         Assets.clic.play(1);
                 }
-                // Juego normal
+                // modo normal
                 if (inBounds(event, 50 + 16, 240, 205, 31)) {
                     juego.setScreen(new PantallaJuego(juego, false));
                     if (Configuraciones.sonidoHabilitado) {
@@ -37,7 +37,7 @@ public class MainMenuScreen extends Pantalla {
                     return;
                 }
 
-                // Juego extremo
+                // modo dificil
                 if (inBounds(event, 50, 250 + 25, 222, 23)) { // Ajusta las coordenadas según el diseño
                     juego.setScreen(new PantallaJuego(juego, true)); // Modo extremo
                     if (Configuraciones.sonidoHabilitado)

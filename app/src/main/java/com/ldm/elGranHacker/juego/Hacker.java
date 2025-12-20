@@ -36,7 +36,8 @@ public class Hacker {
         partes.add(new Escudos(end.x, end.y));
     }
 
-    public void avance() {
+    // Método modificado para aceptar el modo de juego
+    public boolean avance(boolean modoExtremo) {
         Escudos hacker = partes.get(0);
 
         int len = partes.size() - 1;
@@ -56,14 +57,22 @@ public class Hacker {
         if(direccion == DERECHA)
             hacker.x += 1;
 
-        if(hacker.x < 0)
-            hacker.x = 9;
-        if(hacker.x > 9)
-            hacker.x = 0;
-        if(hacker.y < 0)
-            hacker.y = 12;
-        if(hacker.y > 12)
-            hacker.y = 0;
+        // Si es modo extremo, verificar colisión con paredes
+        if(modoExtremo) {
+            return hacker.x < 0 || hacker.x > 9 || hacker.y < 0 || hacker.y > 12; // Devuelve true indicando colisión con pared
+        } else {
+            // Modo normal: el hacker reaparece por el otro lado
+            if(hacker.x < 0)
+                hacker.x = 9;
+            if(hacker.x > 9)
+                hacker.x = 0;
+            if(hacker.y < 0)
+                hacker.y = 12;
+            if(hacker.y > 12)
+                hacker.y = 0;
+        }
+
+        return false; // No hay colisión con pared
     }
 
     public boolean comprobarChoque() {
@@ -77,4 +86,3 @@ public class Hacker {
         return false;
     }
 }
-
